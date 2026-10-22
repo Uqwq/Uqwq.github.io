@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheria | Minecraft Server</title>
+    <style>
+        /* Базовые настройки и цвета */
+        :root {
+            --bg-color: #0d0d0f;
+            --text-main: #ffffff;
+            --text-muted: #9ba1a6;
+            --accent-color: #8b5cf6; /* Фиолетовый акцент */
+            --accent-hover: #7c3aed;
+            --card-bg: #16161a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Контейнер для центрирования контента */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Главный экран (Hero Section) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Легкое свечение на фоне */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(13, 13, 15, 0) 70%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        /* Кнопки */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.7);
+            transform: translateY(-2px);
+        }
+
+        /* Секция с фичами (Особенности) */
+        .features {
+            padding: 100px 0;
+            background-color: #09090b;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #222;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность для телефонов */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Главный экран -->
+    <header class="hero">
+        <div class="container">
+            <h1>Aetheria</h1>
+            <p>Откройте для себя новый уровень Minecraft. Aetheria — это уникальное небесное измерение, захватывающие дух пейзажи, опасные подземелья и мощные артефакты, скрытые над облаками.</p>
+            
+            <div class="btn-group">
+                <!-- Замените href="#" на ссылку на ваш Discord или лаунчер -->
+                <a href="#" class="btn btn-primary">Начать путешествие</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Секция с фичами -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Особенности Aetheria</h2>
+            <p class="section-subtitle">Мы объединили производительность, качество и уникальный геймплей. Каждая деталь нашего мира тщательно проработана для вашего идеального приключения.</p>
+            
+            <div class="grid">
+                <!-- Карточка 1 -->
+                <div class="card">
+                    <h3>Небесное измерение</h3>
+                    <p>Исследуйте новые миры над облаками. Уникальная генерация, парящие острова, захватывающие дух пейзажи и скрытые тайны.</p>
+                </div>
+                <!-- Карточка 2 -->
+                <div class="card">
+                    <h3>Уникальные мобы</h3>
+                    <p>Сразитесь с новыми противниками, обитающими в небесах. Продвинутые механики боя и уникальные дропы, которых вы еще не видели.</p>
+                </div>
+                <!-- Карточка 3 -->
+                <div class="card">
+                    <h3>Подземелья и артефакты</h3>
+                    <p>Отправляйтесь в опасные данжи за мощным лутом. Создавайте и улучшайте экипировку с помощью найденных могущественных предметов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Aetheria. Не связан с Mojang или Microsoft.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
