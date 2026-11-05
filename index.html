@@ -1,4 +1,3 @@
-<!-- language: HTML, file: index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -15,256 +14,69 @@
             --text-muted: #a0a0a0;
             --border: #222222;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Шапка */
-        header {
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--text-main);
-            letter-spacing: 1px;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
         
-        .logo span { color: var(--primary); }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin-left: 2.5rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
+        header {
+            padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center;
+            position: absolute; top: 0; left: 0; right: 0; z-index: 100;
         }
-
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary); letter-spacing: 2px; text-transform: uppercase; }
+        .nav-links a { color: var(--text-main); text-decoration: none; margin-left: 2.5rem; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* Главный экран (Hero) */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            background: radial-gradient(circle at 50% 50%, #0f1f0c 0%, var(--bg) 60%);
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; position: relative; background: radial-gradient(circle at 50% 50%, #0f1f0c 0%, var(--bg) 60%);
         }
-
-        .hero h1 {
-            font-size: 6rem;
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 1rem;
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-            text-shadow: 0 0 40px rgba(57, 255, 20, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 3rem;
-        }
-
+        .hero h1 { font-size: 6rem; font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 1rem; text-transform: uppercase; }
+        .hero h1 span { color: var(--primary); text-shadow: 0 0 40px rgba(57, 255, 20, 0.3); }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 3rem; }
         .hero-btn {
-            padding: 1rem 3rem;
-            background: var(--primary);
-            color: #000;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            padding: 1rem 3rem; background: var(--primary); color: #000; font-size: 1.1rem; font-weight: 800;
+            text-decoration: none; border-radius: 50px; transition: transform 0.2s, box-shadow 0.2s; text-transform: uppercase;
         }
+        .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(57, 255, 20, 0.3); }
 
-        .hero-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(57, 255, 20, 0.3);
-        }
-
-        /* Секция фич */
-        .features {
-            padding: 6rem 4rem;
-            background: var(--bg);
-            text-align: center;
-        }
-
-        .features h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            font-weight: 800;
-        }
-
-        .feature-grid {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        .features { padding: 6rem 4rem; background: var(--bg); text-align: center; }
+        .features h2 { font-size: 2.5rem; margin-bottom: 3rem; font-weight: 800; text-transform: uppercase; }
+        .feature-grid { display: flex; justify-content: center; gap: 2rem; max-width: 1200px; margin: 0 auto; }
         .feature-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 3rem 2rem;
-            flex: 1;
-            text-align: left;
-            transition: border-color 0.3s;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+            padding: 3rem 2rem; flex: 1; text-align: left; transition: border-color 0.3s;
         }
-
         .feature-card:hover { border-color: var(--primary); }
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary); }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Секция цен */
-        .pricing {
-            padding: 6rem 4rem;
-            background: #0a0a0a;
-            text-align: center;
-        }
-
-        .pricing h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            font-weight: 800;
-        }
-
-        .pricing-grid {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        .pricing { padding: 6rem 4rem; background: #0a0a0a; text-align: center; }
+        .pricing h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; text-transform: uppercase; }
+        .pricing-sub { color: var(--text-muted); margin-bottom: 3rem; }
+        .pricing-grid { display: flex; justify-content: center; gap: 2rem; max-width: 1200px; margin: 0 auto; }
         .price-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 3rem 2rem;
-            flex: 1;
-            position: relative;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+            padding: 3rem 2rem; flex: 1; position: relative;
         }
-
-        .price-card.popular {
-            border-color: var(--primary);
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.1);
-        }
-
-        .price-card h4 {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .price-card .price {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--text-main);
-            margin-bottom: 2rem;
-        }
-
-        .price-card .price span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
+        .price-card.popular { border-color: var(--primary); box-shadow: 0 0 30px rgba(57, 255, 20, 0.1); }
+        .price-card h4 { font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; }
+        .price-card .price { font-size: 3.5rem; font-weight: 900; color: var(--text-main); margin-bottom: 2rem; }
+        .price-card .price span { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
         .buy-btn {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            background: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            font-weight: 700;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s;
+            display: block; width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--primary);
+            color: var(--primary); font-weight: 700; text-transform: uppercase; text-decoration: none;
+            border-radius: 8px; transition: all 0.3s;
         }
+        .buy-btn:hover, .price-card.popular .buy-btn { background: var(--primary); color: #000; }
+        .price-card.popular .buy-btn:hover { background: var(--primary-dark); }
 
-        .buy-btn:hover, .price-card.popular .buy-btn {
-            background: var(--primary);
-            color: #000;
-        }
-        
-        .price-card.popular .buy-btn:hover {
-            background: var(--primary-dark);
-        }
-
-        /* FAQ */
-        .faq {
-            padding: 6rem 4rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
-        }
-
-        .faq-item h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-
-        .faq-item p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+        .faq { padding: 6rem 4rem; max-width: 800px; margin: 0 auto; }
+        .faq h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; text-transform: uppercase; }
+        .faq-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+        .faq-item h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main); }
+        .faq-item p { color: var(--text-muted); font-size: 0.95rem; }
 
         @media (max-width: 900px) {
-            .hero h1 { font-size: 3.5rem; }
+            .hero h1 { font-size: 3rem; }
             .feature-grid, .pricing-grid { flex-direction: column; }
             header { padding: 1rem 2rem; }
             .nav-links { display: none; }
@@ -274,23 +86,20 @@
 <body>
 
     <header>
-        <div class="logo">Aurellia<span>.</span></div>
+        <div class="logo">Aurellia</div>
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#pricing">Pricing</a>
             <a href="#faq">FAQ</a>
-            <a href="#">Contact</a>
         </div>
     </header>
 
-    <!-- Первый экран -->
     <section class="hero">
         <h1>Aurellia raises<br>the <span>bar</span></h1>
         <p>A modern modification featuring stunning visuals, smooth performance, and a stylish interface for a clean and immersive gameplay experience.</p>
         <a href="#pricing" class="hero-btn">Get Started</a>
     </section>
 
-    <!-- Фичи -->
     <section class="features" id="features">
         <h2>Advanced features</h2>
         <div class="feature-grid">
@@ -309,27 +118,20 @@
         </div>
     </section>
 
-    <!-- Цены -->
     <section class="pricing" id="pricing">
         <h2>Simple Pricing</h2>
-        <p style="color: var(--text-muted); margin-bottom: 3rem;">One subscription. Every feature.</p>
-        
+        <p class="pricing-sub">One subscription. Every feature.</p>
         <div class="pricing-grid">
-            <!-- 30 дней -->
             <div class="price-card">
                 <h4>30 Days</h4>
                 <div class="price">499 <span>₽</span></div>
                 <a href="#" class="buy-btn">Buy Now</a>
             </div>
-
-            <!-- 90 дней (Выделенный) -->
             <div class="price-card popular">
                 <h4>90 Days</h4>
                 <div class="price">999 <span>₽</span></div>
                 <a href="#" class="buy-btn">Buy Now</a>
             </div>
-
-            <!-- Lifetime -->
             <div class="price-card">
                 <h4>Forever</h4>
                 <div class="price">2999 <span>₽</span></div>
@@ -338,20 +140,16 @@
         </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq" id="faq">
         <h2>Need a help?</h2>
-        
         <div class="faq-item">
             <h4>How do I start using the client?</h4>
             <p>After purchase, download the loader from your account, launch it and log in. Launch details will be available in your personal account.</p>
         </div>
-        
         <div class="faq-item">
             <h4>What are the system requirements?</h4>
             <p>Anything that runs Minecraft comfortably will run the client: Windows 10 or 11, 8 GB of RAM and Java 21. A dedicated GPU is not required.</p>
         </div>
-
         <div class="faq-item">
             <h4>Can I use one key on multiple PCs?</h4>
             <p>The key is bound to one machine. To move it, reset the HWID in your profile — the service lives there, and support can help if anything goes wrong.</p>
