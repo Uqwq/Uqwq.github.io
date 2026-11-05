@@ -6,404 +6,82 @@
     <title>AURELLIA // PRIVATE</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #000000;
-            --accent: #00ff41;
-            --accent-dim: #005a17;
-            --text: #ffffff;
-            --gray: #888888;
-            --border: #222222;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        :root { --bg: #000; --accent: #00ff41; --text: #fff; --gray: #888; --border: #222; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Space Mono', monospace;
-            overflow-x: hidden;
-            /* Сетка на фоне для киберпанк вайба */
-            background-image: linear-gradient(var(--border) 1px, transparent 1px),
-                              linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-color: var(--bg); color: var(--text); font-family: 'Space Mono', monospace;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 40px 40px; overflow-x: hidden;
         }
-
-        /* Кастомный скроллбар */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--accent-dim); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-        /* Шапка */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 5%;
-            border-bottom: 1px solid var(--border);
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-        }
-
-        .logo {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            color: var(--text);
-        }
-
-        .logo b {
-            color: var(--accent);
-        }
-
-        .header-right {
-            font-size: 0.8rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            border: 1px solid var(--accent);
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .header-right:hover {
-            background: var(--accent);
-            color: #000;
-        }
-
-        /* Главный экран */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            padding-top: 80px;
-            position: relative;
-        }
-
-        .hero-text {
-            max-width: 800px;
-            z-index: 2;
-        }
-
-        .hero-text h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 8rem;
-            line-height: 0.9;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            margin-bottom: 2rem;
-            /* Эффект обводки текста */
-            -webkit-text-stroke: 1px var(--text);
-            color: transparent;
-        }
-
-        .hero-text h1 span {
-            -webkit-text-stroke: 0;
-            color: var(--accent);
-            display: block;
-        }
-
-        .hero-desc {
-            font-size: 1rem;
-            color: var(--gray);
-            max-width: 500px;
-            border-left: 2px solid var(--accent);
-            padding-left: 1.5rem;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-        }
-
-        /* Декоративный элемент */
-        .hero-visual {
-            position: absolute;
-            right: -10%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50vw;
-            height: 50vw;
-            border: 1px solid var(--accent-dim);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0.3;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .hero-visual::before {
-            content: '';
-            width: 80%;
-            height: 80%;
-            border: 1px dashed var(--accent);
-            border-radius: 50%;
-            animation: spin 30s linear infinite;
-        }
-
+        header { display: flex; justify-content: space-between; padding: 2rem 5%; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.8); position: fixed; width: 100%; z-index: 100; }
+        .logo { font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: 4px; }
+        .logo b { color: var(--accent); }
+        .header-right { font-size: 0.8rem; color: var(--accent); border: 1px solid var(--accent); padding: 0.5rem 1rem; text-transform: uppercase; cursor: pointer; }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 5%; padding-top: 80px; position: relative; }
+        .hero-text { max-width: 800px; z-index: 2; }
+        .hero-text h1 { font-family: 'Oswald', sans-serif; font-size: 8rem; line-height: 0.9; text-transform: uppercase; letter-spacing: -2px; margin-bottom: 2rem; -webkit-text-stroke: 1px var(--text); color: transparent; }
+        .hero-text h1 span { -webkit-text-stroke: 0; color: var(--accent); display: block; }
+        .hero-desc { font-size: 1rem; color: var(--gray); max-width: 500px; border-left: 2px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; line-height: 1.6; }
+        .hero-visual { position: absolute; right: -10%; top: 50%; transform: translateY(-50%); width: 50vw; height: 50vw; border: 1px solid var(--accent); border-radius: 50%; opacity: 0.2; pointer-events: none; display: flex; justify-content: center; align-items: center; }
+        .hero-visual::before { content: ''; width: 80%; height: 80%; border: 1px dashed var(--accent); border-radius: 50%; animation: spin 30s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        /* Секция фич (Асимметричная) */
-        .features {
-            padding: 8rem 5%;
-            background: #050505;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 3rem;
-            text-transform: uppercase;
-            margin-bottom: 4rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .f-box {
-            padding: 3rem;
-            border: 1px solid var(--border);
-            background: var(--bg);
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .f-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 3px; height: 100%;
-            background: var(--accent);
-            transform: scaleY(0);
-            transition: 0.3s;
-            transform-origin: bottom;
-        }
-
-        .f-box:hover {
-            border-color: var(--gray);
-            transform: translateX(10px);
-        }
-
-        .f-box:hover::before {
-            transform: scaleY(1);
-        }
-
-        .f-box h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .f-box p {
-            color: var(--gray);
-            font-size: 0.85rem;
-        }
-
-        /* Секция Цен (Диагональная) */
-        .pricing {
-            padding: 8rem 5%;
-            position: relative;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px; /* Линия между карточками */
-            background: var(--border);
-            border: 1px solid var(--border);
-        }
-
-        .p-card {
-            background: var(--bg);
-            padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .p-card:hover {
-            background: #0a0a0a;
-        }
-
-        .p-card.featured {
-            background: #071207; /* Едва заметный зеленый оттенок */
-        }
-
-        .p-card.featured::before {
-            content: 'BEST CHOICE';
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            background: var(--accent);
-            color: #000;
-            font-size: 0.7rem;
-            font-weight: bold;
-            text-align: center;
-            padding: 5px 0;
-            letter-spacing: 1px;
-        }
-
-        .p-card h4 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            color: var(--gray);
-            margin-bottom: 2rem;
-        }
-
-        .p-card.featured h4 {
-            color: var(--accent);
-        }
-
-        .p-price {
-            font-family: 'Oswald', sans-serif;
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 2rem;
-        }
-
-        .p-price span {
-            font-family: 'Space Mono', monospace;
-            font-size: 1rem;
-            color: var(--gray);
-        }
-
-        .p-btn {
-            display: block;
-            text-align: center;
-            padding: 1rem;
-            border: 1px solid var(--gray);
-            color: var(--text);
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: auto;
-            transition: 0.3s;
-        }
-
-        .p-card:hover .p-btn, .p-card.featured .p-btn {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .p-card.featured .p-btn {
-            background: var(--accent);
-            color: #000;
-            border-color: var(--accent);
-        }
-
-        .p-card.featured .p-btn:hover {
-            background: var(--accent-dim);
-            color: var(--text);
-        }
-
-        /* Футер */
-        footer {
-            padding: 4rem 5%;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            color: var(--gray);
-            font-size: 0.8rem;
-        }
-
-        @media (max-width: 900px) {
-            .hero-text h1 { font-size: 4rem; }
-            .grid-2, .pricing-grid { grid-template-columns: 1fr; }
-            .hero-visual { display: none; }
-        }
+        .features { padding: 8rem 5%; background: #050505; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .section-title { font-family: 'Oswald', sans-serif; font-size: 3rem; text-transform: uppercase; margin-bottom: 4rem; display: flex; align-items: center; gap: 1rem; }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .f-box { padding: 3rem; border: 1px solid var(--border); background: var(--bg); position: relative; overflow: hidden; transition: 0.3s; }
+        .f-box::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); transform: scaleY(0); transition: 0.3s; transform-origin: bottom; }
+        .f-box:hover { transform: translateX(10px); border-color: var(--gray); }
+        .f-box:hover::before { transform: scaleY(1); }
+        .f-box h3 { font-family: 'Oswald', sans-serif; font-size: 1.8rem; margin-bottom: 1rem; }
+        .f-box p { color: var(--gray); font-size: 0.85rem; }
+        .pricing { padding: 8rem 5%; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+        .p-card { background: var(--bg); padding: 4rem 2rem; display: flex; flex-direction: column; position: relative; }
+        .p-card:hover { background: #0a0a0a; }
+        .p-card.featured { background: #071207; }
+        .p-card.featured::before { content: 'BEST CHOICE'; position: absolute; top: 0; left: 0; width: 100%; background: var(--accent); color: #000; font-size: 0.7rem; font-weight: bold; text-align: center; padding: 5px 0; }
+        .p-card h4 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; text-transform: uppercase; color: var(--gray); margin-bottom: 2rem; }
+        .p-card.featured h4 { color: var(--accent); }
+        .p-price { font-family: 'Oswald', sans-serif; font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 2rem; }
+        .p-price span { font-family: 'Space Mono', monospace; font-size: 1rem; color: var(--gray); }
+        .p-btn { display: block; text-align: center; padding: 1rem; border: 1px solid var(--gray); color: var(--text); text-decoration: none; font-weight: bold; text-transform: uppercase; margin-top: auto; transition: 0.3s; }
+        .p-card:hover .p-btn, .p-card.featured .p-btn { border-color: var(--accent); color: var(--accent); }
+        .p-card.featured .p-btn { background: var(--accent); color: #000; border-color: var(--accent); }
+        footer { padding: 4rem 5%; border-top: 1px solid var(--border); display: flex; justify-content: space-between; color: var(--gray); font-size: 0.8rem; }
+        @media (max-width: 900px) { .hero-text h1 { font-size: 4rem; } .grid-2, .pricing-grid { grid-template-columns: 1fr; } .hero-visual { display: none; } }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo">AURELLIA<b>.</b></div>
         <div class="header-right">GET ACCESS</div>
     </header>
-
     <section class="hero">
         <div class="hero-text">
             <h1>Dominate <span>The Game</span></h1>
-            <p class="hero-desc">
-                The most advanced modification for competitive play. Unmatched bypasses, flawless combat mechanics, and a completely redesigned interface.
-            </p>
-            <a href="#pricing" class="p-btn" style="display:inline-block; padding: 1rem 3rem; background: var(--accent); color:#000; border:none; text-decoration:none; font-weight:bold;">CHOOSE PLAN</a>
+            <p class="hero-desc">The most advanced modification for competitive play. Unmatched bypasses, flawless combat mechanics, and a completely redesigned interface.</p>
+            <a href="#pricing" class="p-btn" style="display:inline-block; padding: 1rem 3rem; background: var(--accent); color:#000; border:none; font-weight:bold;">CHOOSE PLAN</a>
         </div>
         <div class="hero-visual"></div>
     </section>
-
     <section class="features">
         <div class="section-title">Capabilities</div>
         <div class="grid-2">
-            <div class="f-box">
-                <h3>Perfect Combat</h3>
-                <p>Revolutionary hit registration and smooth animations. Every click lands exactly where you want it to.</p>
-            </div>
-            <div class="f-box">
-                <h3>Silent Bypass</h3>
-                <p>Our proprietary obfuscation layer keeps you invisible to all major anti-cheat systems.</p>
-            </div>
-            <div class="f-box">
-                <h3>Visual Overhaul</h3>
-                <p>Custom UI, ESP, and breathtaking shaders that give you a tactical advantage.</p>
-            </div>
-            <div class="f-box">
-                <h3>Max FPS</h3>
-                <p>Engineered to reduce latency and boost frame rates even in massive team fights.</p>
-            </div>
+            <div class="f-box"><h3>Perfect Combat</h3><p>Revolutionary hit registration and smooth animations. Every click lands exactly where you want it to.</p></div>
+            <div class="f-box"><h3>Silent Bypass</h3><p>Our proprietary obfuscation layer keeps you invisible to all major anti-cheat systems.</p></div>
+            <div class="f-box"><h3>Visual Overhaul</h3><p>Custom UI, ESP, and breathtaking shaders that give you a tactical advantage.</p></div>
+            <div class="f-box"><h3>Max FPS</h3><p>Engineered to reduce latency and boost frame rates even in massive team fights.</p></div>
         </div>
     </section>
-
     <section class="pricing" id="pricing">
         <div class="section-title">Pricing</div>
         <div class="pricing-grid">
-            <div class="p-card">
-                <h4>30 Days</h4>
-                <div class="p-price">499 <span>RUB</span></div>
-                <a href="#" class="p-btn">Purchase</a>
-            </div>
-            
-            <div class="p-card featured">
-                <h4>90 Days</h4>
-                <div class="p-price">999 <span>RUB</span></div>
-                <a href="#" class="p-btn">Purchase</a>
-            </div>
-
-            <div class="p-card">
-                <h4>Forever</h4>
-                <div class="p-price">2999 <span>RUB</span></div>
-                <a href="#" class="p-btn">Purchase</a>
-            </div>
+            <div class="p-card"><h4>30 Days</h4><div class="p-price">499 <span>RUB</span></div><a href="#" class="p-btn">Purchase</a></div>
+            <div class="p-card featured"><h4>90 Days</h4><div class="p-price">999 <span>RUB</span></div><a href="#" class="p-btn">Purchase</a></div>
+            <div class="p-card"><h4>Forever</h4><div class="p-price">2999 <span>RUB</span></div><a href="#pricing" class="p-btn">Purchase</a></div>
         </div>
     </section>
-
-    <footer>
-        <div>&copy; 2026 AURELLIA. ALL RIGHTS RESERVED.</div>
-        <div>TERMS OF SERVICE // PRIVACY POLICY</div>
-    </footer>
-
+    <footer><div>&copy; 2026 AURELLIA.</div><div>TERMS // PRIVACY</div></footer>
 </body>
 </html>
