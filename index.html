@@ -3,158 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurellia | Premium Client</title>
+    <title>Aurellia | Next-Gen Modification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #070707;
-            --surface: #111111;
-            --primary: #39ff14;
-            --primary-dark: #2bcc0f;
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --border: #222222;
+            --bg: #050505;
+            --surface: #0d0d0d;
+            --primary: #00ff41; /* Матричный зеленый */
+            --primary-glow: rgba(0, 255, 65, 0.4);
+            --text-main: #f0f0f0;
+            --text-muted: #666666;
+            --border: #1a1a1a;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
-        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden; /* Запрет скролла всей страницы */
+        }
+
+        /* Левая панель (Логотип и фичи) */
+        .left-panel {
+            flex: 1.2;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-right: 1px solid var(--border);
+            background: radial-gradient(circle at 0% 50%, #0a1f0d 0%, var(--bg) 70%);
+            z-index: 2;
+        }
+
+        .brand {
+            font-family: 'Syne', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        .brand span {
+            color: var(--primary);
+            text-shadow: 0 0 30px var(--primary-glow);
+            display: block;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 600px;
+        }
+
+        .feature-box {
+            border-left: 2px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        .feature-box h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+        }
+
+        .feature-box p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Правая панель (Цены) */
+        .right-panel {
+            flex: 1;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto; /* Скролл только для правой части, если не влезет */
+            background: var(--surface);
+        }
+
+        .pricing-header {
+            margin-bottom: 3rem;
+        }
+
+        .pricing-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .pricing-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 4px; /* Острые углы для киберпанк вайба */
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.05);
+            transform: translateX(-5px);
+        }
+
+        .pricing-card.active {
+            border-color: var(--primary);
+            background: #071207;
+        }
         
-        header {
-            padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center;
-            position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+        .pricing-card.active::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--primary);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 2px;
+            letter-spacing: 1px;
         }
-        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary); letter-spacing: 2px; text-transform: uppercase; }
-        .nav-links a { color: var(--text-main); text-decoration: none; margin-left: 2.5rem; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--primary); }
 
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; position: relative; background: radial-gradient(circle at 50% 50%, #0f1f0c 0%, var(--bg) 60%);
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1rem;
         }
-        .hero h1 { font-size: 6rem; font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 1rem; text-transform: uppercase; }
-        .hero h1 span { color: var(--primary); text-shadow: 0 0 40px rgba(57, 255, 20, 0.3); }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 3rem; }
-        .hero-btn {
-            padding: 1rem 3rem; background: var(--primary); color: #000; font-size: 1.1rem; font-weight: 800;
-            text-decoration: none; border-radius: 50px; transition: transform 0.2s, box-shadow 0.2s; text-transform: uppercase;
-        }
-        .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(57, 255, 20, 0.3); }
 
-        .features { padding: 6rem 4rem; background: var(--bg); text-align: center; }
-        .features h2 { font-size: 2.5rem; margin-bottom: 3rem; font-weight: 800; text-transform: uppercase; }
-        .feature-grid { display: flex; justify-content: center; gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .feature-card {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-            padding: 3rem 2rem; flex: 1; text-align: left; transition: border-color 0.3s;
+        .duration {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
         }
-        .feature-card:hover { border-color: var(--primary); }
-        .feature-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary); }
-        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        .pricing { padding: 6rem 4rem; background: #0a0a0a; text-align: center; }
-        .pricing h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; text-transform: uppercase; }
-        .pricing-sub { color: var(--text-muted); margin-bottom: 3rem; }
-        .pricing-grid { display: flex; justify-content: center; gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .price-card {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-            padding: 3rem 2rem; flex: 1; position: relative;
+        .pricing-card.active .duration {
+            color: var(--primary);
         }
-        .price-card.popular { border-color: var(--primary); box-shadow: 0 0 30px rgba(57, 255, 20, 0.1); }
-        .price-card h4 { font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; }
-        .price-card .price { font-size: 3.5rem; font-weight: 900; color: var(--text-main); margin-bottom: 2rem; }
-        .price-card .price span { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
+
+        .cost {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .cost span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+        }
+
         .buy-btn {
-            display: block; width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--primary);
-            color: var(--primary); font-weight: 700; text-transform: uppercase; text-decoration: none;
-            border-radius: 8px; transition: all 0.3s;
+            display: inline-block;
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
-        .buy-btn:hover, .price-card.popular .buy-btn { background: var(--primary); color: #000; }
-        .price-card.popular .buy-btn:hover { background: var(--primary-dark); }
 
-        .faq { padding: 6rem 4rem; max-width: 800px; margin: 0 auto; }
-        .faq h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; text-transform: uppercase; }
-        .faq-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-        .faq-item h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main); }
-        .faq-item p { color: var(--text-muted); font-size: 0.95rem; }
+        .pricing-card:hover .buy-btn, .pricing-card.active .buy-btn {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+        }
 
-        @media (max-width: 900px) {
-            .hero h1 { font-size: 3rem; }
-            .feature-grid, .pricing-grid { flex-direction: column; }
-            header { padding: 1rem 2rem; }
-            .nav-links { display: none; }
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Адаптивность для мобилок */
+        @media (max-width: 1024px) {
+            body { flex-direction: column; overflow: auto; height: auto; }
+            .left-panel { padding: 3rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+            .right-panel { padding: 3rem 2rem; }
+            .brand { font-size: 3.5rem; }
+            .features-list { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">Aurellia</div>
-        <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#faq">FAQ</a>
+    <!-- Левая часть экрана -->
+    <div class="left-panel">
+        <div class="brand">
+            Aurellia<br>
+            <span>System</span>
         </div>
-    </header>
 
-    <section class="hero">
-        <h1>Aurellia raises<br>the <span>bar</span></h1>
-        <p>A modern modification featuring stunning visuals, smooth performance, and a stylish interface for a clean and immersive gameplay experience.</p>
-        <a href="#pricing" class="hero-btn">Get Started</a>
-    </section>
+        <div class="features-list">
+            <div class="feature-box">
+                <h4>Visuals</h4>
+                <p>Complete overhaul of the game's look. Shaders, custom models, and UI tweaks.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Combat</h4>
+                <p>Advanced aim assist, hitbox expanders, and smooth kill aura animations.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Bypass</h4>
+                <p>Undetectable on all popular anti-cheats. Daily updates and signature changes.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Performance</h4>
+                <p>FPS boost up to 40%. No more freezes during intense PvP fights.</p>
+            </div>
+        </div>
+    </div>
 
-    <section class="features" id="features">
-        <h2>Advanced features</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>Combat</h3>
-                <p>Refined combat mechanics designed to give you the upper hand with smooth animations and perfect hitboxes.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Performance</h3>
-                <p>Built to increase stability, improve responsiveness, and ensure a smoother overall gameplay experience.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Visuals</h3>
-                <p>Stunning visual enhancements that make the game look modern while maintaining high FPS.</p>
-            </div>
+    <!-- Правая часть экрана -->
+    <div class="right-panel">
+        <div class="pricing-header">
+            <h2>Choose your access</h2>
+            <p>Instant delivery. 24/7 Support.</p>
         </div>
-    </section>
 
-    <section class="pricing" id="pricing">
-        <h2>Simple Pricing</h2>
-        <p class="pricing-sub">One subscription. Every feature.</p>
-        <div class="pricing-grid">
-            <div class="price-card">
-                <h4>30 Days</h4>
-                <div class="price">499 <span>₽</span></div>
-                <a href="#" class="buy-btn">Buy Now</a>
+        <!-- Тариф 1 -->
+        <div class="pricing-card" onclick="selectCard(this)">
+            <div class="card-top">
+                <div class="duration">30 Days</div>
+                <div class="cost">499 <span>₽</span></div>
             </div>
-            <div class="price-card popular">
-                <h4>90 Days</h4>
-                <div class="price">999 <span>₽</span></div>
-                <a href="#" class="buy-btn">Buy Now</a>
-            </div>
-            <div class="price-card">
-                <h4>Forever</h4>
-                <div class="price">2999 <span>₽</span></div>
-                <a href="#" class="buy-btn">Buy Now</a>
-            </div>
+            <a href="#" class="buy-btn">Purchase</a>
         </div>
-    </section>
 
-    <section class="faq" id="faq">
-        <h2>Need a help?</h2>
-        <div class="faq-item">
-            <h4>How do I start using the client?</h4>
-            <p>After purchase, download the loader from your account, launch it and log in. Launch details will be available in your personal account.</p>
+        <!-- Тариф 2 (Выделенный) -->
+        <div class="pricing-card active" onclick="selectCard(this)">
+            <div class="card-top">
+                <div class="duration">90 Days</div>
+                <div class="cost">999 <span>₽</span></div>
+            </div>
+            <a href="#" class="buy-btn">Purchase</a>
         </div>
-        <div class="faq-item">
-            <h4>What are the system requirements?</h4>
-            <p>Anything that runs Minecraft comfortably will run the client: Windows 10 or 11, 8 GB of RAM and Java 21. A dedicated GPU is not required.</p>
-        </div>
-        <div class="faq-item">
-            <h4>Can I use one key on multiple PCs?</h4>
-            <p>The key is bound to one machine. To move it, reset the HWID in your profile — the service lives there, and support can help if anything goes wrong.</p>
-        </div>
-    </section>
 
+        <!-- Тариф 3 -->
+        <div class="pricing-card" onclick="selectCard(this)">
+            <div class="card-top">
+                <div class="duration">Lifetime</div>
+                <div class="cost">2999 <span>₽</span></div>
+            </div>
+            <a href="#" class="buy-btn">Purchase</a>
+        </div>
+
+        <div class="footer-note">
+            By purchasing, you agree to the Terms of Service.
+        </div>
+    </div>
+
+    <script>
+        // Скрипт для переключения активной карточки
+        function selectCard(element) {
+            // Убираем класс active у всех карточек
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            // Добавляем класс active той, на которую кликнули
+            element.classList.add('active');
+        }
+    </script>
 </body>
 </html>
