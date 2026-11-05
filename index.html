@@ -4,302 +4,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurellia Checker | Проверка статуса</title>
+    <title>Aurellia | Premium Client</title>
     <style>
         :root {
-            --bg: #0a0a0a;
-            --surface: #141414;
-            --primary: #39ff14; /* Кислотно-зеленый */
+            --bg: #070707;
+            --surface: #111111;
+            --primary: #39ff14;
             --primary-dark: #2bcc0f;
-            --text-main: #e0e0e0;
-            --text-muted: #888;
-            --border: #2a2a2a;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border: #222222;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text-main);
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden;
         }
 
         /* Шапка */
         header {
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
+            padding: 1.5rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(10, 10, 10, 0.9);
-            position: sticky;
+            position: absolute;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
-            backdrop-filter: blur(5px);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: 1px;
         }
+        
+        .logo span { color: var(--primary); }
 
         .nav-links a {
             color: var(--text-main);
             text-decoration: none;
-            margin-left: 2rem;
+            margin-left: 2.5rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+        .nav-links a:hover { color: var(--primary); }
 
-        /* Главный контейнер */
-        main {
-            flex: 1;
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        /* Левая часть - Текст и цены */
-        .hero-content {
+        /* Главный экран (Hero) */
+        .hero {
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, #0f1f0c 0%, var(--bg) 60%);
         }
 
-        h1 {
-            font-size: 3.5rem;
+        .hero h1 {
+            font-size: 6rem;
+            font-weight: 900;
             line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 40px rgba(57, 255, 20, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-btn {
+            padding: 1rem 3rem;
+            background: var(--primary);
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(57, 255, 20, 0.3);
+        }
+
+        /* Секция фич */
+        .features {
+            padding: 6rem 4rem;
+            background: var(--bg);
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
             font-weight: 800;
         }
 
-        h1 span {
-            color: var(--primary);
-            text-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
-        }
-
-        p.subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 90%;
-        }
-
-        /* Блок с ценами */
-        .pricing {
+        .feature-grid {
             display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            flex: 1;
+            text-align: left;
+            transition: border-color 0.3s;
+        }
+
+        .feature-card:hover { border-color: var(--primary); }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Секция цен */
+        .pricing {
+            padding: 6rem 4rem;
+            background: #0a0a0a;
+            text-align: center;
+        }
+
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 800;
+        }
+
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .price-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
+            border-radius: 16px;
+            padding: 3rem 2rem;
             flex: 1;
             position: relative;
-            overflow: hidden;
-            transition: transform 0.3s, border-color 0.3s;
         }
 
-        .price-card:hover {
-            transform: translateY(-5px);
+        .price-card.popular {
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(57, 255, 20, 0.1);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.1);
         }
 
-        .price-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--primary);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-            transform-origin: left;
-        }
-
-        .price-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .price-duration {
-            font-size: 0.9rem;
+        .price-card h4 {
+            font-size: 1.2rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
-        .price-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .price-value span {
-            font-size: 1.2rem;
+        .price-card .price {
+            font-size: 3.5rem;
+            font-weight: 900;
             color: var(--text-main);
+            margin-bottom: 2rem;
+        }
+
+        .price-card .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
             font-weight: 500;
         }
 
-        .btn-buy {
+        .buy-btn {
             display: block;
             width: 100%;
-            margin-top: 1.5rem;
-            padding: 0.8rem;
+            padding: 1rem;
             background: transparent;
             border: 1px solid var(--primary);
             color: var(--primary);
             font-weight: 700;
             text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 6px;
+            text-decoration: none;
+            border-radius: 8px;
             transition: all 0.3s;
         }
 
-        .btn-buy:hover {
+        .buy-btn:hover, .price-card.popular .buy-btn {
             background: var(--primary);
-            color: var(--bg);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+            color: #000;
         }
-
-        /* Правая часть - Форма проверки */
-        .checker-panel {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .checker-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
-        }
-
-        .checker-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--primary);
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(57, 255, 20, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0); }
-        }
-
-        .input-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 1rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-main);
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(57, 255, 20, 0.2);
-        }
-
-        .btn-check {
-            width: 100%;
-            padding: 1rem;
-            background: var(--primary);
-            border: none;
-            color: var(--bg);
-            font-weight: 800;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background 0.3s, transform 0.1s;
-        }
-
-        .btn-check:hover {
+        
+        .price-card.popular .buy-btn:hover {
             background: var(--primary-dark);
         }
 
-        .btn-check:active {
-            transform: scale(0.98);
+        /* FAQ */
+        .faq {
+            padding: 6rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .result-area {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: var(--bg);
-            border: 1px dashed var(--border);
-            border-radius: 8px;
+        .faq h2 {
+            font-size: 2.5rem;
             text-align: center;
-            color: var(--text-muted);
+            margin-bottom: 3rem;
         }
 
-        /* Адаптивность */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+        }
+
+        .faq-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
         @media (max-width: 900px) {
-            main {
-                grid-template-columns: 1fr;
-                padding: 2rem 1rem;
-            }
-            h1 { font-size: 2.5rem; }
-            .pricing { flex-direction: column; }
-            header { padding: 1rem; }
+            .hero h1 { font-size: 3.5rem; }
+            .feature-grid, .pricing-grid { flex-direction: column; }
+            header { padding: 1rem 2rem; }
             .nav-links { display: none; }
         }
     </style>
@@ -307,82 +274,89 @@
 <body>
 
     <header>
-        <div class="logo">Aurellia</div>
+        <div class="logo">Aurellia<span>.</span></div>
         <div class="nav-links">
-            <a href="#">Купить</a>
-            <a href="#">Проверка</a>
-            <a href="#">Поддержка</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="#">Contact</a>
         </div>
     </header>
 
-    <main>
-        <!-- Левая колонка с текстом и ценами -->
-        <div class="hero-content">
-            <h1>Проверка статуса <br><span>Aurellia</span></h1>
-            <p class="subtitle">Мгновенная проверка блокировок и лицензий. Убедись, что твой доступ активен, перед заходом в игру.</p>
-            
-            <div class="pricing">
-                <!-- Тариф 30 дней -->
-                <div class="price-card">
-                    <div class="price-duration">30 дней</div>
-                    <div class="price-value">499 <span>₽</span></div>
-                    <button class="btn-buy">Купить доступ</button>
-                </div>
-                <!-- Тариф 90 дней -->
-                <div class="price-card">
-                    <div class="price-duration">90 дней</div>
-                    <div class="price-value">999 <span>₽</span></div>
-                    <button class="btn-buy">Купить доступ</button>
-                </div>
+    <!-- Первый экран -->
+    <section class="hero">
+        <h1>Aurellia raises<br>the <span>bar</span></h1>
+        <p>A modern modification featuring stunning visuals, smooth performance, and a stylish interface for a clean and immersive gameplay experience.</p>
+        <a href="#pricing" class="hero-btn">Get Started</a>
+    </section>
+
+    <!-- Фичи -->
+    <section class="features" id="features">
+        <h2>Advanced features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Combat</h3>
+                <p>Refined combat mechanics designed to give you the upper hand with smooth animations and perfect hitboxes.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Performance</h3>
+                <p>Built to increase stability, improve responsiveness, and ensure a smoother overall gameplay experience.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Visuals</h3>
+                <p>Stunning visual enhancements that make the game look modern while maintaining high FPS.</p>
             </div>
         </div>
+    </section>
 
-        <!-- Правая колонка с формой проверки -->
-        <div class="checker-panel">
-            <div class="checker-header">
-                <h2>Панель проверки</h2>
-                <div class="status-indicator">
-                    <div class="dot"></div>
-                    System Online
-                </div>
+    <!-- Цены -->
+    <section class="pricing" id="pricing">
+        <h2>Simple Pricing</h2>
+        <p style="color: var(--text-muted); margin-bottom: 3rem;">One subscription. Every feature.</p>
+        
+        <div class="pricing-grid">
+            <!-- 30 дней -->
+            <div class="price-card">
+                <h4>30 Days</h4>
+                <div class="price">499 <span>₽</span></div>
+                <a href="#" class="buy-btn">Buy Now</a>
             </div>
 
-            <div class="input-group">
-                <label>Ключ лицензии (HWID)</label>
-                <input type="text" placeholder="Введите ваш ключ..." id="licenseKey">
+            <!-- 90 дней (Выделенный) -->
+            <div class="price-card popular">
+                <h4>90 Days</h4>
+                <div class="price">999 <span>₽</span></div>
+                <a href="#" class="buy-btn">Buy Now</a>
             </div>
 
-            <button class="btn-check" onclick="checkStatus()">Проверить</button>
-
-            <div class="result-area" id="resultBox">
-                Ожидание ввода данных...
+            <!-- Lifetime -->
+            <div class="price-card">
+                <h4>Forever</h4>
+                <div class="price">2999 <span>₽</span></div>
+                <a href="#" class="buy-btn">Buy Now</a>
             </div>
         </div>
-    </main>
+    </section>
 
-    <script>
-        // Простая имитация работы чекера
-        function checkStatus() {
-            const key = document.getElementById('licenseKey').value;
-            const box = document.getElementById('resultBox');
-            
-            if (!key) {
-                box.innerHTML = '<span style="color: #ff4444;">Ошибка: Введите ключ!</span>';
-                return;
-            }
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <h2>Need a help?</h2>
+        
+        <div class="faq-item">
+            <h4>How do I start using the client?</h4>
+            <p>After purchase, download the loader from your account, launch it and log in. Launch details will be available in your personal account.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h4>What are the system requirements?</h4>
+            <p>Anything that runs Minecraft comfortably will run the client: Windows 10 or 11, 8 GB of RAM and Java 21. A dedicated GPU is not required.</p>
+        </div>
 
-            box.innerHTML = 'Подключение к серверу...';
-            box.style.color = 'var(--text-main)';
+        <div class="faq-item">
+            <h4>Can I use one key on multiple PCs?</h4>
+            <p>The key is bound to one machine. To move it, reset the HWID in your profile — the service lives there, and support can help if anything goes wrong.</p>
+        </div>
+    </section>
 
-            setTimeout(() => {
-                // Тут в реальности был бы fetch к API
-                if (key.toLowerCase().includes('aurellia')) {
-                    box.innerHTML = '<span style="color: var(--primary); font-weight: bold;">УСПЕХ: Лицензия активна. Добро пожаловать!</span>';
-                } else {
-                    box.innerHTML = '<span style="color: #ff4444; font-weight: bold;">ОШИБКА: Ключ не найден или истек срок действия.</span>';
-                }
-            }, 1000);
-        }
-    </script>
 </body>
 </html>
